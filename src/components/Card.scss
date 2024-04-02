@@ -1,0 +1,30 @@
+.card {
+  display: grid;
+  max-width: 600px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #ffffff44;
+  border-radius: 8px;
+  > * {
+    margin: 0;
+    justify-self: flex-start;
+    align-self: center;
+  }
+  p {
+    text-align: left;
+  }
+
+  &:hover {
+    background-color: #ffffff22;
+  }
+
+  img {
+    grid-row: 1 / span 2;
+    width: 100px;
+  }
+  .name {
+    font-size: 40px;
+  }
+}
