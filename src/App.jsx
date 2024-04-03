@@ -1,26 +1,30 @@
 import { useState } from "react";
 import "./App.css";
 import Card from "./components/Card";
-import Input from "./components/Input";
-import { people } from "./tools/people.tools";
-import { useSearchEngine } from "./hooks/useSearchEngine";
+import { arrayOfPeople } from "./tools/people.tools";
+import DeepSearch from "./components/DeepSearch";
 
 function App() {
-  const [searchValue, setSearchValue] = useState("");
-  const [persons] = useState(people);
-  const includedKeys = ["firstname", "lastname"];
-  const excludedKeys = ["image", "description"];
-
-  const { finalFilteredArray } = useSearchEngine(searchValue, persons);
+  const [people] = useState(arrayOfPeople);
+  const [includedKeys, setIncludedKeys] = useState([
+    "firstname",
+    "lastname",
+    "description",
+  ]);
+  const [excludedKeys, setExcludedKeys] = useState(null);
+  const [sortOptions, setSortOptions] = useState(["city"]);
 
   return (
     <>
-      <Input searchValue={searchValue} setSearchValue={setSearchValue} />
-      <div className="car-list">
-        {finalFilteredArray.map((avatar, i) => (
-          <Card key={i} person={avatar} />
-        ))}
-      </div>
+      <DeepSearch
+        arrayToSearch={people}
+        ExcludedKeys={excludedKeys}
+        IncludedKeys={includedKeys}
+        sortOptions={sortOptions}
+        renderMappedItem={(element) => (
+          <Card person={element} key={element.id} />
+        )}
+      />
     </>
   );
 }

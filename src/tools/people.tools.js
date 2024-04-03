@@ -1,8 +1,9 @@
-export const people = [
+export const arrayOfPeople = [
   {
+    id: 1,
     firstname: "Alice",
     lastname: "Dupont",
-    image: "../../public/avatar_01.svg",
+    image: "/avatar_01.svg",
     description:
       "Alice est une aventurière intrépide qui parcourt le monde à la recherche de trésors perdus.",
     address: {
@@ -14,9 +15,10 @@ export const people = [
     },
   },
   {
+    id: 2,
     firstname: "Bob",
     lastname: "Martin",
-    image: "../../public/avatar_02.svg",
+    image: "/avatar_02.svg",
     description:
       "Bob est un scientifique brillant qui passe son temps à inventer des gadgets futuristes.",
     address: {
@@ -28,9 +30,10 @@ export const people = [
     },
   },
   {
+    id: 3,
     firstname: "Martine",
     lastname: "Durand",
-    image: "../../public/avatar_08.svg",
+    image: "/avatar_08.svg",
     description:
       "Martine est une artiste passionnée par la peinture et la sculpture. Elle trouve l'inspiration dans la nature.",
     address: {
@@ -42,9 +45,10 @@ export const people = [
     },
   },
   {
+    id: 4,
     firstname: "Claire",
     lastname: "Lefebvre",
-    image: "../../public/avatar_03.svg",
+    image: "/avatar_03.svg",
     description:
       "Claire est une artiste passionnée par la peinture et la sculpture. Elle trouve l'inspiration dans la nature.",
     address: {
@@ -56,9 +60,10 @@ export const people = [
     },
   },
   {
+    id: 5,
     firstname: "David",
     lastname: "Garcia",
-    image: "../../public/avatar_04.svg",
+    image: "/avatar_04.svg",
     description:
       "David est un détective privé astucieux qui résout les affaires les plus complexes.",
     address: {
@@ -70,9 +75,10 @@ export const people = [
     },
   },
   {
+    id: 6,
     firstname: "Emma",
     lastname: "Moreau",
-    image: "../../public/avatar_05.svg",
+    image: "/avatar_05.svg",
     description:
       "Emma est une écrivaine talentueuse qui crée des mondes imaginaires captivants.",
     address: {
@@ -84,9 +90,10 @@ export const people = [
     },
   },
   {
+    id: 7,
     firstname: "Fabien",
     lastname: "Roux",
-    image: "../../public/avatar_06.svg",
+    image: "/avatar_06.svg",
     description:
       "Fabien est un chef cuisinier relastnamemé qui explore les saveurs du monde entier.",
     address: {
@@ -98,9 +105,10 @@ export const people = [
     },
   },
   {
+    id: 8,
     firstname: "Bob",
     lastname: "Dylan",
-    image: "../../public/avatar_10.svg",
+    image: "/avatar_10.svg",
     description:
       "Bob est un scientifique brillant qui passe son temps à inventer des gadgets futuristes.",
     address: {
@@ -112,9 +120,10 @@ export const people = [
     },
   },
   {
+    id: 9,
     firstname: "Géraldine",
     lastname: "Bertrand",
-    image: "../../public/avatar_07.svg",
+    image: "/avatar_07.svg",
     description:
       "Géraldine est une astronaute courageuse qui rêve de découvrir de nouvelles planètes habitables.",
     address: {
@@ -126,9 +135,10 @@ export const people = [
     },
   },
   {
+    id: 10,
     firstname: "Hugo",
     lastname: "Fournier",
-    image: "../../public/avatar_08.svg",
+    image: "/avatar_08.svg",
     description:
       "Hugo est un athlète professionnel qui repousse sans cesse ses limites dans des compétitions extrêmes.",
     address: {
