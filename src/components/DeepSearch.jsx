@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useSearchEngine } from "../hooks/useSearchEngine";
+import { searchEngine } from "../utils/searchEngine";
 
 function DeepSearch({
   arrayToSearch,
-  IncludedKeys = null,
-  ExcludedKeys = null,
+  includedKeys = null,
+  excludedKeys = null,
   sortOptions = null,
   renderMappedItem,
   labelName,
@@ -13,11 +13,11 @@ function DeepSearch({
 }) {
   const [searchValue, setSearchValue] = useState("");
 
-  const { sortedArray } = useSearchEngine(
+  const { sortedArray } = searchEngine(
     searchValue,
     arrayToSearch,
-    IncludedKeys,
-    ExcludedKeys,
+    includedKeys,
+    excludedKeys,
     sortOptions
   );
 

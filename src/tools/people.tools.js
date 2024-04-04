@@ -5,7 +5,7 @@ export const arrayOfPeople = [
     lastname: "Dupont",
     image: "/avatar_01.svg",
     description:
-      "Alice est une aventurière intrépide qui parcourt le monde à la recherche de trésors perdus.",
+      "Aventurière intrépide qui parcourt le monde à la recherche de trésors perdus.",
     address: {
       streetNumber: 123,
       streetName: "Rue de la Liberté",
@@ -20,7 +20,7 @@ export const arrayOfPeople = [
     lastname: "Martin",
     image: "/avatar_02.svg",
     description:
-      "Bob est un scientifique brillant qui passe son temps à inventer des gadgets futuristes.",
+      "Scientifique brillant qui passe son temps à inventer des gadgets futuristes.",
     address: {
       streetNumber: 456,
       streetName: "Avenue des Sciences",
@@ -35,7 +35,7 @@ export const arrayOfPeople = [
     lastname: "Durand",
     image: "/avatar_08.svg",
     description:
-      "Martine est une artiste passionnée par la peinture et la sculpture. Elle trouve l'inspiration dans la nature.",
+      "Artiste passionnée par la peinture et la sculpture. Elle trouve l'inspiration dans la nature.",
     address: {
       streetNumber: 789,
       streetName: "Boulevard des Arts",
@@ -50,7 +50,7 @@ export const arrayOfPeople = [
     lastname: "Lefebvre",
     image: "/avatar_03.svg",
     description:
-      "Claire est une artiste passionnée par la peinture et la sculpture. Elle trouve l'inspiration dans la nature.",
+      "Artiste passionnée par la peinture et la sculpture. Elle trouve l'inspiration dans la nature.",
     address: {
       streetNumber: 321,
       streetName: "Rue de la Créativité",
@@ -65,7 +65,7 @@ export const arrayOfPeople = [
     lastname: "Garcia",
     image: "/avatar_04.svg",
     description:
-      "David est un détective privé astucieux qui résout les affaires les plus complexes.",
+      "Détective privé astucieux qui résout les affaires les plus complexes.",
     address: {
       streetNumber: 654,
       streetName: "Via Delle Indagini",
@@ -80,7 +80,7 @@ export const arrayOfPeople = [
     lastname: "Moreau",
     image: "/avatar_05.svg",
     description:
-      "Emma est une écrivaine talentueuse qui crée des mondes imaginaires captivants.",
+      "Ecrivaine talentueuse qui crée des mondes imaginaires captivants.",
     address: {
       streetNumber: 987,
       streetName: "Avenida de la Imaginación",
@@ -95,7 +95,7 @@ export const arrayOfPeople = [
     lastname: "Roux",
     image: "/avatar_06.svg",
     description:
-      "Fabien est un chef cuisinier relastnamemé qui explore les saveurs du monde entier.",
+      "Chef cuisinier relastnamemé qui explore les saveurs du monde entier.",
     address: {
       streetNumber: 147,
       streetName: "Calle de los Sabores",
@@ -110,7 +110,7 @@ export const arrayOfPeople = [
     lastname: "Dylan",
     image: "/avatar_10.svg",
     description:
-      "Bob est un scientifique brillant qui passe son temps à inventer des gadgets futuristes.",
+      "Scientifique brillant qui passe son temps à inventer des gadgets futuristes.",
     address: {
       streetNumber: 258,
       streetName: "Inventor's Lane",
@@ -125,7 +125,7 @@ export const arrayOfPeople = [
     lastname: "Bertrand",
     image: "/avatar_07.svg",
     description:
-      "Géraldine est une astronaute courageuse qui rêve de découvrir de nouvelles planètes habitables.",
+      "Astronaute courageuse qui rêve de découvrir de nouvelles planètes habitables.",
     address: {
       streetNumber: 369,
       streetName: "Avenue de l'Espace",
@@ -140,7 +140,7 @@ export const arrayOfPeople = [
     lastname: "Fournier",
     image: "/avatar_08.svg",
     description:
-      "Hugo est un athlète professionnel qui repousse sans cesse ses limites dans des compétitions extrêmes.",
+      "Athlète professionnel qui repousse sans cesse ses limites dans des compétitions extrêmes.",
     address: {
       streetNumber: 741,
       streetName: "Extreme Sports Street",

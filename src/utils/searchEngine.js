@@ -10,11 +10,11 @@
  * @returns {Object} - Returns an object containing the filtered array based on the search criteria.
  */
 
-export const useSearchEngine = (
+export const searchEngine = (
   value,
   array,
-  includedKeys = null,
-  excludedKeys = null,
+  includedKeys,
+  excludedKeys,
   sortOptions
 ) => {
   const filteredValuesByKeys = (obj, value) => {
@@ -29,47 +29,52 @@ export const useSearchEngine = (
           .toLowerCase()
           .includes(value.toLowerCase());
 
-        return excludedKeys
+        return excludedKeys && excludedKeys.length > 0
           ? !excludedKeys.includes(key) && searchedValues
-          : includedKeys
+          : includedKeys && includedKeys.length > 0
           ? includedKeys.includes(key) && searchedValues
           : searchedValues;
       }
     });
   };
 
-  const filteredArray = array.filter((avatar) =>
-    filteredValuesByKeys(avatar, value)
+  const filteredArray = array.filter((element) =>
+    filteredValuesByKeys(element, value)
   );
 
-  const sortedArray = filteredArray.toSorted((a, b) => {
-    const searchPropertyInObject = (obj1, obj2) => {
-      let sort = 0;
-      for (let i = 0; i < sortOptions.length; i++) {
-        const option = sortOptions[i];
-        if (obj1.hasOwnProperty(option) && obj2.hasOwnProperty(option)) {
-          sort = obj1[option].localeCompare(obj2[option]);
-          if (sort !== 0) {
-            return sort;
-          }
-        } else {
-          for (const key of Object.keys(obj1)) {
-            if (
-              typeof obj1[key] === "object" &&
-              typeof obj2[key] === "object"
-            ) {
-              sort = searchPropertyInObject(obj1[key], obj2[key]);
-              if (sort !== 0) {
-                return sort;
-              }
+  const searchPropertyInObject = (obj1, obj2) => {
+    let sort = 0;
+    for (let i = 0; i < sortOptions.length; i++) {
+      const option = sortOptions[i];
+      if (obj1.hasOwnProperty(option) && obj2.hasOwnProperty(option)) {
+        sort = obj1[option].localeCompare(obj2[option]);
+        if (sort !== 0) {
+          return sort;
+        }
+      } else {
+        for (const key of Object.keys(obj1)) {
+          if (
+            obj1[key] !== null &&
+            obj2[key] !== null &&
+            typeof obj1[key] === "object" &&
+            typeof obj2[key] === "object"
+          ) {
+            sort = searchPropertyInObject(obj1[key], obj2[key]);
+            if (sort !== 0) {
+              return sort;
             }
           }
         }
       }
-      return sort;
-    };
-    return sortOptions && searchPropertyInObject(a, b);
-  });
+    }
+    return sort;
+  };
+
+  const sortedArray = sortOptions
+    ? filteredArray.toSorted((a, b) => {
+        return searchPropertyInObject(a, b);
+      })
+    : filteredArray;
 
   return { sortedArray };
 };
