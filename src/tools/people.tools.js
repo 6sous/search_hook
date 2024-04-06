@@ -133,6 +133,13 @@ export const arrayOfPeople = [
       postalCode: "77001",
       country: "USA",
     },
+    billingAddress: {
+      streetNumber: 258,
+      streetName: "Inventor's Lane",
+      city: "San Francisco",
+      postalCode: "94101",
+      country: "USA",
+    },
   },
   {
     id: 10,

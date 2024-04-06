@@ -22,17 +22,29 @@ export const searchEngine = (
 
     return keys.some((key) => {
       if (typeof obj[key] === "object") {
-        return filteredValuesByKeys(obj[key], value);
+        if (
+          includedKeys.length > 0 &&
+          (!excludedKeys.length || !excludedKeys)
+        ) {
+          if (includedKeys.includes(key)) {
+            return filteredValuesByKeys(obj[key], value);
+          }
+        }
+        if (excludedKeys.length > 0) {
+          if (!excludedKeys.includes(key)) {
+            return filteredValuesByKeys(obj[key], value);
+          }
+        }
       } else {
         const searchedValues = obj[key]
           .toString()
           .toLowerCase()
           .includes(value.toLowerCase());
 
-        return excludedKeys && excludedKeys.length > 0
-          ? !excludedKeys.includes(key) && searchedValues
-          : includedKeys && includedKeys.length > 0
+        return includedKeys && includedKeys.length > 0
           ? includedKeys.includes(key) && searchedValues
+          : excludedKeys && excludedKeys.length > 0
+          ? !excludedKeys.includes(key) && searchedValues
           : searchedValues;
       }
     });
@@ -41,6 +53,8 @@ export const searchEngine = (
   const filteredArray = array.filter((element) =>
     filteredValuesByKeys(element, value)
   );
+
+  console.log(filteredArray);
 
   const searchPropertyInObject = (obj1, obj2) => {
     let sort = 0;
@@ -71,7 +85,7 @@ export const searchEngine = (
   };
 
   const sortedArray = sortOptions
-    ? filteredArray.toSorted((a, b) => {
+    ? filteredArray.sort((a, b) => {
         return searchPropertyInObject(a, b);
       })
     : filteredArray;

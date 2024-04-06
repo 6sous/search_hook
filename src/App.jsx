@@ -10,7 +10,7 @@ import DeepSearch from "./components/DeepSearch";
 function App() {
   const [people] = useState(arrayOfPeople);
   const [includedKeys, setIncludedKeys] = useState(["city"]);
-  const [excludedKeys, setExcludedKeys] = useState(["lastname"]);
+  const [excludedKeys, setExcludedKeys] = useState([]);
   const [sortOptions, setSortOptions] = useState(["firstname", "lastname"]);
 
   return (
