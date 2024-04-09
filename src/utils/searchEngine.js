@@ -1,5 +1,49 @@
+export function includeFn(includedKeys, excludedKeys) {
+  return (key, value) => {
+    if (excludedKeys?.length && excludedKeys.includes(key)) {
+      return false;
+    }
+    if (typeof value === "object") return true;
+
+    if (includedKeys?.length && !includedKeys.includes(key)) {
+      return false;
+    }
+    return true;
+  };
+}
+
+export function insensitiveSearch(value, searchValue) {
+  return value.toString().toLowerCase().includes(searchValue.toLowerCase());
+}
+
+export const filterValuesByKeys = (
+  obj,
+  searchValue,
+  includedKeys,
+  excludedKeys
+) => {
+  const include = includeFn(includedKeys, excludedKeys);
+
+  if (obj === null || typeof obj !== "object") {
+    return false;
+  }
+
+  return Object.entries(obj).some(([key, value]) => {
+    if (!include(key, value)) {
+      return false;
+    }
+    if (typeof value === "object") {
+      return filterValuesByKeys(value, searchValue, includedKeys, excludedKeys);
+    }
+    if (typeof value !== "string" && typeof value !== "number") {
+      return false;
+    }
+    return insensitiveSearch(value, searchValue);
+  });
+};
+
 /**
- * Custom hook for searching through an array of objects based on specified keys,
+ * function for searching through an array of objects based on specified keys,
  * allowing inclusion or exclusion of certain keys and sorting options to be specified.
  *
  * @param {string} value - The search value.
@@ -17,50 +61,18 @@ export const searchEngine = (
   excludedKeys,
   sortOptions
 ) => {
-  const filteredValuesByKeys = (obj, value) => {
-    const keys = Object.keys(obj);
-
-    return keys.some((key) => {
-      if (typeof obj[key] === "object") {
-        if (
-          includedKeys.length > 0 &&
-          (!excludedKeys.length || !excludedKeys)
-        ) {
-          if (includedKeys.includes(key)) {
-            return filteredValuesByKeys(obj[key], value);
-          }
-        }
-        if (excludedKeys.length > 0) {
-          if (!excludedKeys.includes(key)) {
-            return filteredValuesByKeys(obj[key], value);
-          }
-        }
-      } else {
-        const searchedValues = obj[key]
-          .toString()
-          .toLowerCase()
-          .includes(value.toLowerCase());
-
-        return includedKeys && includedKeys.length > 0
-          ? includedKeys.includes(key) && searchedValues
-          : excludedKeys && excludedKeys.length > 0
-          ? !excludedKeys.includes(key) && searchedValues
-          : searchedValues;
-      }
-    });
-  };
-
   const filteredArray = array.filter((element) =>
-    filteredValuesByKeys(element, value)
+    filterValuesByKeys(element, value, includedKeys, excludedKeys)
   );
-
-  console.log(filteredArray);
 
   const searchPropertyInObject = (obj1, obj2) => {
     let sort = 0;
     for (let i = 0; i < sortOptions.length; i++) {
       const option = sortOptions[i];
-      if (obj1.hasOwnProperty(option) && obj2.hasOwnProperty(option)) {
+      if (
+        Object.hasOwnProperty.call(obj1, option) &&
+        Object.hasOwnProperty.call(obj2, option)
+      ) {
         sort = obj1[option].localeCompare(obj2[option]);
         if (sort !== 0) {
           return sort;
