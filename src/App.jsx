@@ -8,7 +8,7 @@ function App() {
   const [people] = useState(arrayOfPeople);
   const [includedKeys] = useState(["city"]);
   const [excludedKeys] = useState(["billingAddress"]);
-  const [sortOptions] = useState(["firstname", "lastname"]);
+  const [sortOptions] = useState(["country", "lastname"]);
 
   return (
     <main>
@@ -18,6 +18,7 @@ function App() {
         includedKeys={includedKeys}
         sortOptions={sortOptions}
         renderMappedItem={(element) => {
+          console.log(element.address.country);
           return <Card person={element} key={element.id} />;
         }}
       />

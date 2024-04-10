@@ -42,6 +42,18 @@ export const filterValuesByKeys = (
   });
 };
 
+function hasPropertyFn(option) {
+  return (obj) => Object.hasOwnProperty.call(obj, option);
+}
+
+function isObject(value) {
+  if (value !== null && typeof value === "object") {
+    return true;
+  }
+
+  return false;
+}
+
 /**
  * function for searching through an array of objects based on specified keys,
  * allowing inclusion or exclusion of certain keys and sorting options to be specified.
@@ -65,36 +77,21 @@ export const searchEngine = (
     filterValuesByKeys(element, value, includedKeys, excludedKeys)
   );
 
-  const searchPropertyInObject = (obj1, obj2) => {
-    let sort = 0;
-    for (let i = 0; i < sortOptions.length; i++) {
-      const option = sortOptions[i];
-      if (
-        Object.hasOwnProperty.call(obj1, option) &&
-        Object.hasOwnProperty.call(obj2, option)
-      ) {
-        sort = obj1[option].localeCompare(obj2[option]);
-        if (sort !== 0) {
-          return sort;
-        }
-      } else {
-        for (const key of Object.keys(obj1)) {
-          if (
-            obj1[key] !== null &&
-            obj2[key] !== null &&
-            typeof obj1[key] === "object" &&
-            typeof obj2[key] === "object"
-          ) {
-            sort = searchPropertyInObject(obj1[key], obj2[key]);
-            if (sort !== 0) {
-              return sort;
-            }
-          }
+  function searchPropertyInObject(obj1, obj2) {
+    for (const option of sortOptions) {
+      const hasProp = hasPropertyFn(option);
+
+      if (hasProp(obj1) && hasProp(obj2)) {
+        return obj1[option].localeCompare(obj2[option]);
+      }
+
+      for (const key of Object.keys(obj1)) {
+        if (isObject(obj1[key]) && isObject(obj2[key])) {
+          return searchPropertyInObject(obj1[key], obj2[key]);
         }
       }
     }
-    return sort;
-  };
+  }
 
   const sortedArray = sortOptions
     ? filteredArray.sort((a, b) => {
